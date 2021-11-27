@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_HUB_CREDS = credentials("DOCKER_HUB_CREDS")
+    
+    }
     stages {
         stage('Setup') {
             steps {
@@ -16,7 +20,7 @@ pipeline {
                 sh "bash jenkins/build.sh"
             }
         }
-         stage('Push') {
+        stage('Push') {
             steps {
                 sh "bash jenkins/push.sh"
             }
